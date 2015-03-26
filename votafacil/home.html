@@ -37,6 +37,18 @@
  <script type="text/javascript" src="resources/js/f.js"></script>
  <script type="text/javascript">
    home();
+
+   $(document).ready(function(){
+     var maisAlto = 0;
+     var thumbnails = $(".opcao");
+     thumbnails.each(function() {       
+         var thisHeight = $(this).height();       
+         if(thisHeight > maisAlto) {          
+             maisAlto = thisHeight;       
+         }    
+     });  
+     thumbnails.each(function() { $(this).height(maisAlto); });
+   })
  </script>
  </html>
 

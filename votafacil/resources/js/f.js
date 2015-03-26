@@ -153,17 +153,16 @@ function iniciarVotacao() {
                                                                 _ += "<div class='col-xs-6 col-md-4' style='margin-top: 2em'>";
                                                                 _ += "<button data-value='"+e.id+"' class='btn btn-block btn-default opcao' onclick='focusControl(this)'>";
                                                                 if (e.get("arquivo")) 
-                                                                    _ += "<img src='"+e.get("arquivo").url()+"' class='img-rounded' /></br>";
+                                                                    _ += "<img src='"+e.get("arquivo").url()+"' class='img-rounded' />";
                                                                 if (e.get("textoOpcao"))
-                                                                    _ += "<h3 style='white-space: normal;'>"+e.get("textoOpcao")+"</h3>";
-                                                                    //_ += "<h3>"+e.get("textoOpcao")+"</h3>";
+                                                                    _ += "<h4 style='white-space: normal;'>"+e.get("textoOpcao")+"</h4>";
                                                                 _ += "</button>";
                                                                 _ += "</div>";
                                                             });
                                                             
                                                             _ += "</div>";
                                                             pergunta.innerHTML = _;
-                                                            
+
                                                             var maisAlto = 0;
                                                             var thumbnails = $(".opcao");
                                                             thumbnails.each(function() {       
@@ -172,12 +171,13 @@ function iniciarVotacao() {
                                                                     maisAlto = thisHeight;       
                                                                 }    
                                                             });  
-                                                            thumbnails.each(function() { $(this).height(maisAlto+20); });
+                                                            thumbnails.each(function() { $(this).height(maisAlto + 50); });
                                                         }
                                                     })    
                                                 } else {
                                                     pergunta.innerHTML = "<h1>Voto já computado</h1>";
                                                     $(".btn-success").addClass("disabled"); 
+                                                    $(".btn-danger").addClass("disabled");
                                                 } 
                                             }
                                           });
@@ -203,6 +203,8 @@ function focusControl(element) {
     $("button.btn-primary").removeClass("btn-primary");
     $(element).addClass("btn-primary");
     if (confirm("Confirma seu voto?")) {
+        $(".opcao").addClass("disabled");
+        $(element).html("<center><span class='fa fa-refresh fa-spin'></span></center>");
         registrarVoto();
     }
 }
