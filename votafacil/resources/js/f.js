@@ -172,6 +172,7 @@ function iniciarVotacao() {
                                                                 }    
                                                             });  
                                                             thumbnails.each(function() { $(this).height(maisAlto + 50); });
+                                                            thumbnails.each(function() { $(this).height(maisAlto + 50); });
                                                         }
                                                     })    
                                                 } else {
