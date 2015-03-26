@@ -145,12 +145,12 @@ function iniciarVotacao() {
                                                     queryOpcoes.ascending("numero");
                                                     queryOpcoes.find({
                                                         success : function (opcoes) {
-                                                            _ += "<div class='container-fluid'>";
+                                                            _ += "<div class='container'>";
                                                             _ += "<h1>"+e.get("titulo")+"</h1>";
                                                             _ += "<h3>"+e.get("pergunta")+"</h3>";
-                                                            _ += "<div class='row-same-height'>";
+                                                            _ += "<div class='row'>";
                                                             $(opcoes).each(function(i, e) {
-                                                                _ += "<div class='col-sm-6 col-md-4 col-full-height' data-value='"+e.id+"' onclick='focusControl(this)'>";
+                                                                _ += "<div class='col-xs-6' data-value='"+e.id+"' onclick='focusControl(this)'>";
                                                                 _ += "<div class='thumbnail'>";
                                                                 if (e.get("arquivo")) 
                                                                     _ += "<img src='"+e.get("arquivo").url()+"' class='img-rounded' /></br>";
@@ -165,7 +165,18 @@ function iniciarVotacao() {
                                                             });
                                                             _ += "</div>";
                                                             _ += "</div>";
+                                                            
                                                             pergunta.innerHTML = _;
+                                                            
+                                                            var maisAlto = 0;
+                                                            var thumbnails = $(".thumbnail");
+                                                            thumbnails.each(function() {       
+                                                                var thisHeight = $(this).height();       
+                                                                if(thisHeight > maisAlto) {          
+                                                                    maisAlto = thisHeight;       
+                                                                }    
+                                                            });  
+                                                            thumbnails.each(function() { $(this).height(maisAlto); });
                                                         }
                                                     })    
                                                 } else {
@@ -681,6 +692,7 @@ function setTitle(title, subtitle) {
 }
 
 function startParse() {
+    //Parse.initialize("c0ppHCN9En9JFhExK7H7HaYZeRNNOGnHCjCvTnyE", "PQrtHfb683zjR9pSHHwzeyWO34uT3mFZqpPQHeAK");
     Parse.initialize("AMWPVkiXCTh491UdP5PU5qP4qbRkuFnr3wQYwkq2", "wpz9034zJoF6avWKTvRk6jSqTN2PHoZC3LIrF8Rt");
 }
 
