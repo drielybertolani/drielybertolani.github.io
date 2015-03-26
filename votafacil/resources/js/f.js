@@ -178,7 +178,6 @@ function iniciarVotacao() {
                                                 } else {
                                                     pergunta.innerHTML = "<h1>Voto já computado</h1>";
                                                     $(".btn-success").addClass("disabled"); 
-                                                    $(".btn-danger").addClass("disabled");
                                                 } 
                                             }
                                           });
@@ -296,6 +295,83 @@ function obterParticipanteAtivo() {
            document.getElementById('imatricula').value = participante.get('matricula');
         }
     }); 
+ }
+
+ function goImportarParticipante() {
+    goTo("pages/importacaoCSVParticipantes.html", function(){
+        setTitle("Importar Participantes");
+        $(".loading").hide();
+    });
+ }
+ 
+ function prepararArquivo() {
+    var arquivo = $("#csv-file")[0];
+    if (arquivo.files.length > 0) {
+      $(".loading").fadeIn();
+      var file = arquivo.files[0];
+      processarCSV(file);
+      $(".loading").fadeOut();
+    }
+ }
+
+ function processarCSV(csv) {
+    var resultado = document.getElementById("resultado");
+    resultado.innerHTML += "<table class='table table-hover table-condensed'><thead><td>Matricula</td><td>Nome</td><td></td></thead></table>";
+
+    Papa.parse(csv, {
+        worker: true,
+        complete : function (results, file) {
+            setTitle("Importar Participantes", "Leitura do arquivo concluída. O processamento será executado em 2º plano e você pode acompanhar o log de execução.");
+        },
+        skipEmptyLines: true,
+        step: function(results) {           
+            var table = $(".table")[0];
+            var matricula = results.data[0][0];
+            var nome = results.data[0][1];
+            
+            if (!matricula || !nome) 
+                return;
+            
+            var Participante = Parse.Object.extend("Participante");
+            var participante = new Participante();
+
+            var buscarParticipante = new Parse.Query(Participante);
+            buscarParticipante.equalTo("matricula", matricula);
+            buscarParticipante.find({
+                success : function(participanteDb) {
+                    participante.set("nome", nome);
+                    participante.set("matricula", matricula);
+                    participante.set("ativo", true);
+                    
+                    if (participanteDb.length == 0) {
+                        
+                        participante.save().then(function() {
+                            table.innerHTML += "<tr class='success'><td>"+matricula+"</td><td>"+nome+"</td><td>Importado com Sucesso!</td></tr>";    
+                        }, 
+
+                        function() {
+                            table.innerHTML += "<tr class='danger'><td>"+matricula+"</td><td>"+nome+"</td><td>Ocorreu um erro durante a importação. Tente novamente</td></tr>";
+                        });
+                    } else {
+                        participante.set("objectId", participanteDb[0].id);
+                        participante.save().then(function() {
+                            table.innerHTML += "<tr class='warning'><td>"+matricula+"</td><td>"+nome+"</td><td>Contato já existia e foi atualizado!</td></tr>";
+                        }, 
+
+                        function() {
+                            table.innerHTML += "<tr class='danger'><td>"+matricula+"</td><td>"+nome+"</td><td>Ocorreu um erro durante a importação. Tente novamente</td></tr>";
+                        });
+                    }
+                    
+                }, 
+
+                error : function (error) {
+                    resultado.innerHTML += "<tr class='danger'><td>"+matricula+"</td><td>"+nome+"</td><td>Ocorreu um erro durante a importação. Tente novamente</td></tr>";   
+                }
+            });
+
+        }
+    });
  }
 
  function goListarParticipantes() {
@@ -691,7 +767,7 @@ function setTitle(title, subtitle) {
 }
 
 function startParse() {
-    //Parse.initialize("c0ppHCN9En9JFhExK7H7HaYZeRNNOGnHCjCvTnyE", "PQrtHfb683zjR9pSHHwzeyWO34uT3mFZqpPQHeAK");
-    Parse.initialize("AMWPVkiXCTh491UdP5PU5qP4qbRkuFnr3wQYwkq2", "wpz9034zJoF6avWKTvRk6jSqTN2PHoZC3LIrF8Rt");
+    Parse.initialize("c0ppHCN9En9JFhExK7H7HaYZeRNNOGnHCjCvTnyE", "PQrtHfb683zjR9pSHHwzeyWO34uT3mFZqpPQHeAK");
+    //Parse.initialize("AMWPVkiXCTh491UdP5PU5qP4qbRkuFnr3wQYwkq2", "wpz9034zJoF6avWKTvRk6jSqTN2PHoZC3LIrF8Rt");
 }
 
