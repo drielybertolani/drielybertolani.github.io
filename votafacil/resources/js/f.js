@@ -148,35 +148,31 @@ function iniciarVotacao() {
                                                             _ += "<div class='container'>";
                                                             _ += "<h1>"+e.get("titulo")+"</h1>";
                                                             _ += "<h3>"+e.get("pergunta")+"</h3>";
-                                                            _ += "<div class='row'>";
+                                                            
                                                             $(opcoes).each(function(i, e) {
-                                                                _ += "<div class='col-xs-6' data-value='"+e.id+"' onclick='focusControl(this)'>";
-                                                                _ += "<div class='thumbnail'>";
+                                                                _ += "<div class='col-xs-6 col-md-4' style='margin-top: 2em'>";
+                                                                _ += "<button data-value='"+e.id+"' class='btn btn-block btn-default opcao' onclick='focusControl(this)'>";
                                                                 if (e.get("arquivo")) 
                                                                     _ += "<img src='"+e.get("arquivo").url()+"' class='img-rounded' /></br>";
-                                                                if (e.get("textoOpcao")) {
-                                                                    _ += "<div class='caption'>";
-                                                                    _ += "<h3>"+e.get("textoOpcao")+"</h3>";
-                                                                    _ += "</div>";
-                                                                }
-
+                                                                if (e.get("textoOpcao"))
+                                                                    _ += "<h3 style='white-space: normal;'>"+e.get("textoOpcao")+"</h3>";
+                                                                    //_ += "<h3>"+e.get("textoOpcao")+"</h3>";
+                                                                _ += "</button>";
                                                                 _ += "</div>";
-                                                                _ += "</div>"; 
                                                             });
-                                                            _ += "</div>";
-                                                            _ += "</div>";
                                                             
+                                                            _ += "</div>";
                                                             pergunta.innerHTML = _;
                                                             
                                                             var maisAlto = 0;
-                                                            var thumbnails = $(".thumbnail");
+                                                            var thumbnails = $(".opcao");
                                                             thumbnails.each(function() {       
                                                                 var thisHeight = $(this).height();       
                                                                 if(thisHeight > maisAlto) {          
                                                                     maisAlto = thisHeight;       
                                                                 }    
                                                             });  
-                                                            thumbnails.each(function() { $(this).height(maisAlto); });
+                                                            thumbnails.each(function() { $(this).height(maisAlto+20); });
                                                         }
                                                     })    
                                                 } else {
