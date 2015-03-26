@@ -1,0 +1,29 @@
+<html>
+	<meta charset="utf-8">
+	<script src="//www.parsecdn.com/js/parse-1.3.2.min.js"></script>
+	<script type="text/javascript" src="resources/js/f.js"></script>
+	<body>
+		<div id="content" class="loading widget-overlay">
+      		<center><span class="fa fa-refresh fa-spin"></span></center>
+    	</div>
+	</body>
+
+	<script type="text/javascript">
+		startParse();
+		var content = document.getElementById("content");
+		var user = new Parse.User();
+		user.set("username", "admin");
+		user.set("password", "admin");
+		user.set("isAdmin", true);
+
+		user.signUp(null, {
+			success : function(user) {
+				content.innerHTML = "Usuário criado com sucesso. Favor, excuir este arquivo.";
+			},
+
+			error: function(user) {
+				content.innerHTML = "Usuário não foi criado. Provavelmente já existe.";
+			}
+		});
+	</script>
+</html>

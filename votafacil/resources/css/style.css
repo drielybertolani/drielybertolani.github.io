@@ -1,0 +1,58 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+span {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.well {
+	margin-top: 1em;
+}
+.button-group {
+  margin-top: 1em;
+  position: botton;
+}
+
+.item-votacao {
+  /* margin-top: 0em; */
+  margin-bottom: 2em;
+}
+
+.botao-votacao {
+	margin-top: 15em;
+	margin-bottom: 3em;
+}
+
+.row-same-height {
+    display: table;
+    width: 100%;
+}
+.col-xs-height {
+    display: table-cell;
+    float: none !important;
+}
+
+.col-full-height {
+  height: 100%;
+  vertical-align: middle;
+}
+
+@media (min-width: 768px) {
+    .col-sm-height {
+        display: table-cell;
+        float: none !important;
+    }
+}
+@media (min-width: 992px) {
+    .col-md-height {
+        display: table-cell;
+        float: none !important;
+    }
+}
+@media (min-width: 1200px) {
+    .col-lg-height {
+        display: table-cell;
+        float: none !important;
+    }
+}

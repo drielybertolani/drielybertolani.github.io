@@ -1,0 +1,32 @@
+<div class="container">
+	<div class="hide-on-new">
+		<input type="hidden" id="objectId" />
+		<h3>Título</h3>
+		<div class="input-group">
+		  <span class="input-group-addon" id="titulo"><span class="fa fa-bookmark-o"></span></span>
+		  <input id="ititulo" type="text" class="form-control" placeholder="Título" aria-describedby="titulo">
+		</div>
+
+		<h3>Pergunta</h3>
+		<div class="input-group">
+		  <span class="input-group-addon" id="pergunta"><span class="fa fa-bookmark"></span></span>
+		  <input id="ipergunta" type="text" class="form-control" placeholder="Pergunta" aria-describedby="pergunta">
+		</div>
+	
+		<div class="well">
+			<div class="page-header">
+				<h3>Opções</h3>
+				<button class="btn btn-lg btn-default fa fa-plus" onclick="viewOpcao()"></button>
+			</div>
+			
+			<div id="opcoes"></div>
+		</div>
+
+		<div>
+			<button class="btn btn-block btn-primary" onclick="salvarPesquisa()"> Salvar </button>
+			<button class="btn btn-block btn-danger" onclick="homeAdmin()"> Cancelar </button>
+		</div>
+	</div>
+
+	<div id="newopc"></div>
+</div>

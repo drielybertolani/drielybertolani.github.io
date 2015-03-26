@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <!-- Bootstrap -->
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    
+    <!-- Parse.com -->    
+    <script src="//www.parsecdn.com/js/parse-1.3.2.min.js"></script>
+    
+    <!-- Font awesome icons -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Fontes -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <!-- Imports do sistema -->
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+    <title>Bem vindo ao Vote-fácil</title>
+
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="page-header col-md-8">
+            <h1 class="page-title">Você deveria setar o titulo da janela :p</h1>
+            <small class="page-subtitle"></small>
+          </div>
+          
+          <div class="logoff">
+          <p class="text-right">
+            <button class="fa fa-sign-out btn btn-danger" onclick="logoff()">sair</button>
+          </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="loading widget-overlay">
+      <center><span class="fa fa-refresh fa-spin"></span></center>
+    </div>
+  	
+    <div id="content" class="container">
+	  	  
+	  </div>
+  </body>
+  
+ <!-- Scripts que atrasam o carregamento devem vir para o fim -->
+ <script type="text/javascript" src="resources/js/f.js"></script>
+ <script type="text/javascript">
+   startParse();
+   isLogado();
+ </script>
+ </html>
