@@ -150,7 +150,7 @@ function iniciarVotacao() {
                                                             _ += "<h3>"+e.get("pergunta")+"</h3>";
                                                             _ += "<div class='container-fluid'>";
                                                             $(opcoes).each(function(i, e) {
-                                                                _ += "<div class='row box-votacao' onclick='focusControl(this)'>";
+                                                                _ += "<div class='row box-votacao opcao' data-value='"+e.id+"' onclick='focusControl(this)'>";
                                                                 if (e.get("arquivo")) {
                                                                     _ += "<div class='pull-left col-md-2'>"
                                                                     _ += "<img src='"+e.get("arquivo").url()+"' class='img-rounded' />";
@@ -199,8 +199,8 @@ function focusControl(element) {
     $("div.row.btn-primary").removeClass("btn-primary");
     $(element).addClass("btn-primary");
     if (confirm("Confirma seu voto?")) {
-        $(".opcao").addClass("disabled");
-        $(element).html("<center><span class='fa fa-refresh fa-spin'></span></center>");
+        $(".opcao").attr("onclick", "");
+        $(element).html("<center>Seu voto está sendo registrado, aguarde... <span class='fa fa-refresh fa-spin'></span></center>");
         registrarVoto();
     }
 }
