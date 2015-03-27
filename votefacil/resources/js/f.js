@@ -173,7 +173,7 @@ function iniciarVotacao() {
                                                     })    
                                                 } else {
                                                     pergunta.innerHTML = "<h1>Voto já computado</h1>";
-                                                    $(".btn-success").addClass("disabled"); 
+                                                    $("#btn-cancelar").removeClass("btn-danger").addClass("btn-primary").html("<span class='large'>Voltar</span>");
                                                 } 
                                             }
                                           });
@@ -183,7 +183,7 @@ function iniciarVotacao() {
                                 });
                             } else {
                                 pergunta.innerHTML = "<h1>Nenhuma pesquisa disponível no momento</h1>";
-                                $(".btn-success").addClass("disabled");
+                                $("#btn-cancelar").removeClass("btn-danger").addClass("btn-primary").html("<span class='large'>Voltar</span>");
                             }
                         }
                     });
@@ -763,7 +763,7 @@ function setTitle(title, subtitle) {
 }
 
 function startParse() {
-    Parse.initialize("c0ppHCN9En9JFhExK7H7HaYZeRNNOGnHCjCvTnyE", "PQrtHfb683zjR9pSHHwzeyWO34uT3mFZqpPQHeAK");
-    //Parse.initialize("AMWPVkiXCTh491UdP5PU5qP4qbRkuFnr3wQYwkq2", "wpz9034zJoF6avWKTvRk6jSqTN2PHoZC3LIrF8Rt");
+    //Parse.initialize("c0ppHCN9En9JFhExK7H7HaYZeRNNOGnHCjCvTnyE", "PQrtHfb683zjR9pSHHwzeyWO34uT3mFZqpPQHeAK");
+    Parse.initialize("AMWPVkiXCTh491UdP5PU5qP4qbRkuFnr3wQYwkq2", "wpz9034zJoF6avWKTvRk6jSqTN2PHoZC3LIrF8Rt");
 }
 
