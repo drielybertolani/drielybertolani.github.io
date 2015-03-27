@@ -165,29 +165,10 @@ function iniciarVotacao() {
                                                                 }
                                                                 _ += "</div><br>";
 
-                                                                // _ += "<div class='col-xs-6 col-md-4' style='margin-top: 2em'>";
-                                                                // _ += "<button data-value='"+e.id+"' class='btn btn-block btn-default opcao' onclick='focusControl(this)'>";
-                                                                // if (e.get("arquivo")) 
-                                                                //     _ += "<img src='"+e.get("arquivo").url()+"' class='img-rounded' />";
-                                                                // if (e.get("textoOpcao"))
-                                                                //     _ += "<h4 style='white-space: normal;'>"+e.get("textoOpcao")+"</h4>";
-                                                                // _ += "</button>";
-                                                                // _ += "</div>";
                                                             });
                                                             _ += "</div>";
                                                             _ += "</div>";
                                                             pergunta.innerHTML = _;
-
-                                                            var maisAlto = 0;
-                                                            var thumbnails = $(".opcao");
-                                                            thumbnails.each(function() {       
-                                                                var thisHeight = $(this).height();       
-                                                                if(thisHeight > maisAlto) {          
-                                                                    maisAlto = thisHeight;       
-                                                                }    
-                                                            });  
-                                                            thumbnails.each(function() { $(this).height(maisAlto + 50); });
-                                                            thumbnails.each(function() { $(this).height(maisAlto + 50); });
                                                         }
                                                     })    
                                                 } else {
@@ -215,7 +196,7 @@ function iniciarVotacao() {
 }
 
 function focusControl(element) {
-    $("button.btn-primary").removeClass("btn-primary");
+    $("div.row.btn-primary").removeClass("btn-primary");
     $(element).addClass("btn-primary");
     if (confirm("Confirma seu voto?")) {
         $(".opcao").addClass("disabled");
