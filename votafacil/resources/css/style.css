@@ -6,6 +6,10 @@ span {
 	font-family: 'Open Sans', sans-serif;
 }
 
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .well {
 	margin-top: 1em;
 }
@@ -27,6 +31,34 @@ span {
 	margin-top: 15em;
 	margin-bottom: 3em;
 }
+
+/*Experimental*/
+
+.img-rounded
+.img-thumbnail {
+  max-width: 70px;
+  max-height: 70px;
+}
+
+
+
+.box-votacao {
+  border-style: solid;
+  border-width: 1px;
+  border-color: thistle;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.descricao-opcao-voto {
+  padding-right: 5px;
+  padding-top: 5px;
+}
+
+.large {
+   font-size: large;
+}
+
 /*
 .row-same-height {
     display: table;

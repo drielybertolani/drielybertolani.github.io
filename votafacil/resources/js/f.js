@@ -148,18 +148,33 @@ function iniciarVotacao() {
                                                             _ += "<div class='container'>";
                                                             _ += "<h1>"+e.get("titulo")+"</h1>";
                                                             _ += "<h3>"+e.get("pergunta")+"</h3>";
-                                                            
+                                                            _ += "<div class='container-fluid'>";
                                                             $(opcoes).each(function(i, e) {
-                                                                _ += "<div class='col-xs-6 col-md-4' style='margin-top: 2em'>";
-                                                                _ += "<button data-value='"+e.id+"' class='btn btn-block btn-default opcao' onclick='focusControl(this)'>";
-                                                                if (e.get("arquivo")) 
+                                                                _ += "<div class='row box-votacao' onclick='focusControl(this)'>";
+                                                                if (e.get("arquivo")) {
+                                                                    _ += "<div class='pull-left col-md-2'>"
                                                                     _ += "<img src='"+e.get("arquivo").url()+"' class='img-rounded' />";
-                                                                if (e.get("textoOpcao"))
-                                                                    _ += "<h4 style='white-space: normal;'>"+e.get("textoOpcao")+"</h4>";
-                                                                _ += "</button>";
-                                                                _ += "</div>";
+                                                                    _ += "</div>";
+                                                                }
+
+                                                                if (e.get("textoOpcao")) {
+                                                                    _ += "<div class='col-md-10 descricao-opcao-voto center-block pagination-centered'><p class='large'>";
+                                                                    _ += e.get("textoOpcao");
+                                                                    _ += "</p></div>"
+                                                                      
+                                                                }
+                                                                _ += "</div><br>";
+
+                                                                // _ += "<div class='col-xs-6 col-md-4' style='margin-top: 2em'>";
+                                                                // _ += "<button data-value='"+e.id+"' class='btn btn-block btn-default opcao' onclick='focusControl(this)'>";
+                                                                // if (e.get("arquivo")) 
+                                                                //     _ += "<img src='"+e.get("arquivo").url()+"' class='img-rounded' />";
+                                                                // if (e.get("textoOpcao"))
+                                                                //     _ += "<h4 style='white-space: normal;'>"+e.get("textoOpcao")+"</h4>";
+                                                                // _ += "</button>";
+                                                                // _ += "</div>";
                                                             });
-                                                            
+                                                            _ += "</div>";
                                                             _ += "</div>";
                                                             pergunta.innerHTML = _;
 
