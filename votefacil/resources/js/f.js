@@ -430,6 +430,7 @@ function obterParticipanteAtivo() {
                 conteudo += "   <h3>"+pesquisa.get("pergunta")+"</h3>"
                 conteudo += "   <small>Total de votos&nbsp;<strong id='"+pesquisa.id+"'>0</strong></small>"
                 conteudo += "</div>"
+                conteudo += "<div id='opcoes'>"
                 $(opcoes).each(function(i, opcao){
                     conteudo += "<div class='well well-sm'>"
                     if (opcao.get("arquivo")) 
@@ -439,6 +440,7 @@ function obterParticipanteAtivo() {
                     conteudo += "<center><h3 id='"+opcao.id+"' class='item-percentual' data-votos='0'>0</h3></center>"
                     conteudo += "</div>"
                 });
+                conteudo += "</div>"
                 content.innerHTML = conteudo;
 
                 var queryParticipantes = new Parse.Query(Parse.Object.extend("Participante"));
@@ -462,6 +464,7 @@ function obterParticipanteAtivo() {
                                 opc.dataset.votos = totalVotosOpc;
 
                                 processarTotais(totalVotos);
+                                Ordenar('#opcoes', ".well");
                             })
                         });
                     });
@@ -475,9 +478,25 @@ function obterParticipanteAtivo() {
    $(".item-percentual").each(function(i, opcao){
        var totalVotosOpc = parseInt(opcao.dataset.votos);
        var percentual = (totalVotosOpc * 100) / totalVotos;
-       opcao.innerHTML = percentual.toFixed(2) + " %";
+       opcao.innerHTML = "Votos: "+ totalVotosOpc + " ("+ percentual.toFixed(2) + ") %";
    });
  }
+
+ function Ordenar(idContainer, eleFilho) {
+    var cont = $(idContainer),
+        itens = cont.children(eleFilho);
+
+    itens.sort(function (a, b) {
+        var i1 = $(a).children('center').children(".item-percentual");
+        var i2 = $(b).children('center').children(".item-percentual");
+        var cmpA = parseInt(i1[0].dataset.votos);
+            cmpB = parseInt(i2[0].dataset.votos);
+        return (cmpA > cmpB) ? -1 : (cmpA < cmpB) ? 1 : 0;
+    })
+
+    $.each(itens, function (idx, itm) { cont.append(itm); });
+}
+
 
  /*
     Funções gerais utilizadas nos menus.
